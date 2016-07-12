@@ -50,21 +50,23 @@ def make_text(chains, text_string):
 
     text = ""
     
-    for i in len(text_string)-1:
-        last_words = (text_string[-3:])
-        print last_words
+  #  for i in len(text_string)-1:
+    text_string = text_string.rstrip()
+    last_words_list = text_string.split(" ")[-2:]
+    last_words_tuple = (last_words_list[0], last_words_list[1])
 
     for key in chains:
-        while key in chains:
+        while key != last_words_tuple:
+            print "first", key
             random_word = choice(chains[key])
             #generate a random word from the value list
             text = text + key[0] + " " + key[1] + " " + random_word + " "
             #add to text string the tuple and random word
             second_two_key = (key[1], random_word)
             key = second_two_key
+            print "new", key
             #set second key as the new key and reinitiate loop
-
-    
+        break
     return text
 
 
@@ -74,8 +76,8 @@ input_path = "green-eggs.txt"
 input_text = open_and_read_file(input_path)
 
 # Get a Markov chain
-chains = make_chains(input_text)
-
+chains, text_string = make_chains(input_text)
+#print text_string
 # Produce random text
 random_text = make_text(chains, text_string)
 
