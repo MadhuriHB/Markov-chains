@@ -70,7 +70,7 @@ def make_text(chains, text_string):
     return text
 
 
-input_path = "green-eggs.txt"
+input_path = "gettysburg.txt"
 
 # Open the file and turn it into one long string
 input_text = open_and_read_file(input_path)
